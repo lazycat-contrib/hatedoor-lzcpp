@@ -28,7 +28,6 @@ images:
     delivery:
       mode: mirror
       image_template: docker.1ms.run/battermanz/hatchdoor:{tag}
-      require_digest_match: true
 
 stores:
   official:
