@@ -1,0 +1,17 @@
+params:
+  - id: hatchdoor_web_token
+    type: secret
+    name: "Hatchdoor Access Token"
+    description: "Bearer token required to access the Hatchdoor web UI"
+    default_value: "$random(len=32)"
+    optional: false
+
+locales:
+  zh:
+    hatchdoor_web_token:
+      name: "Hatchdoor 访问令牌"
+      description: "访问 Hatchdoor Web 界面所需的 Bearer 令牌"
+  en:
+    hatchdoor_web_token:
+      name: "Hatchdoor Access Token"
+      description: "Bearer token required to access the Hatchdoor web UI"

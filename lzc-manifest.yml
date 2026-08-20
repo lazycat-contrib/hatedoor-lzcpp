@@ -1,0 +1,48 @@
+application:
+  subdomain: hatchdoor
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://hatchdoor:42824/
+  injects:
+    - id: hatchdoor-auth
+      on: request
+      auth_required: false
+      when:
+        - /*
+      unless:
+        - /mcp
+      do: |
+        ctx.headers.set("Authorization", "Bearer {{ .U.hatchdoor_web_token }}");
+
+services:
+  hatchdoor:
+    # battermanz/hatchdoor:2.5.0
+    # upstream: battermanz/hatchdoor:2.5.0
+    image: docker.1ms.run/battermanz/hatchdoor:2.5.0
+    binds:
+      - /lzcapp/var/hatchdoor/vault:/data/vault
+      - /lzcapp/cache/hatchdoor:/data/cache
+      - /lzcapp/var/hatchdoor/state:/data/state
+      - /lzcapp/cache/hatchdoor/models:/models
+    environment:
+      - HOST=0.0.0.0
+      - PORT=42824
+      - VAULT_PATH=/data/vault
+      - HATCHDOOR_CACHE_DB=/data/cache/hatchdoor-cache.sqlite3
+      - HATCHDOOR_WEB_BEARER_TOKEN={{ .U.hatchdoor_web_token }}
+    healthcheck:
+      test:
+        - CMD
+        - /app/hatchdoor
+        - --healthcheck
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+usage: |
+  首次打开时，Hatchdoor 会引导选择搜索模型（Gemma 或 Nomic Embed Text v1.5）。
+  模型会在首次启动时下载，期间笔记功能暂时不可用。
+  你的 Markdown 笔记存放在应用数据目录中，升级应用不会丢失。
