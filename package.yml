@@ -1,5 +1,5 @@
 package: community.lazycat.app.hatchdoor
-version: 2.6.0
+version: 2.6.1
 name: Hatchdoor
 description: "AI-native, self-hosted web app and MCP server for your Markdown vault"
 min_os_version: 1.5.0
