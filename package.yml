@@ -1,4 +1,5 @@
 package: community.lazycat.app.hatchdoor
+license: AGPL-3.0
 version: 2.7.0
 name: Hatchdoor
 description: "AI-native, self-hosted web app and MCP server for your Markdown vault"
