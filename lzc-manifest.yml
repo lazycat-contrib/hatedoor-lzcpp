@@ -18,8 +18,8 @@ application:
 services:
   hatchdoor:
     # battermanz/hatchdoor:2.5.0
-    # upstream: docker.io/battermanz/hatchdoor:2.8.2
-    image: docker.1ms.run/battermanz/hatchdoor:2.8.2
+    # upstream: docker.io/battermanz/hatchdoor:2.9.0
+    image: docker.1ms.run/battermanz/hatchdoor:2.9.0
     binds:
       - /lzcapp/var/hatchdoor/vault:/data/vault
       - /lzcapp/cache/hatchdoor:/data/cache
